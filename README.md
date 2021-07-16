@@ -18,6 +18,14 @@ Yes, just replace the eboot.bin(or any other ELF that was patched) with the orgi
 # Patches:
 <details><summary>Fallout 4 Custom PRX Patch(Patch To Load a User Created PRX)</summary>
 
+# Notes: 
+* This does use Address based patching, so if you do not have the proper game update and or version of the game as shown below, it likely won't work
+
+
+# Requirements: 
+* CUSA: CUSA02557
+* Version: 1.22
+
 ![screenshot](https://cdn.discordapp.com/attachments/458451567658401802/864987083381932092/Screenshot_1.png)
 # Soruce Code(ASM):
 
