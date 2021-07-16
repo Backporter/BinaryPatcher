@@ -26,7 +26,7 @@ Yes, just replace the eboot.bin(or any other ELF that was patched) with the orgi
 
 ```asm
 call    sceSystemServiceHideSplashScreen
-mov     eax, 1E38634h ; 1E38634h => memory adress to the custom prx prx path(/app0/prx.prx)
+mov     eax, 1E38634h ; 1E38634h => memory adress to the custom PRX path(/app0/prx.prx)
 lea     edi, [eax]
 mov     esi, 0
 mov     edx, 0
@@ -35,13 +35,15 @@ mov     eax, 0
 call    sceKernelLoadStartModule
 retn
 ```
-
 </p>
 </details>
+  
+---------------------------------------------------------------------
 
-Automatic: use SSE-Fallout-4-Patcher-F4PRX.exe.
-<details><summary>Manual:</summary>
+<details><summary>Manual(Hex Editing):</summary>
 <p>
+
+**go to these addresses in a Hex(like HxD) Editor and replace the Orginal Bytes with the Replace With ones:**
 
 <details><summary>0x9A1385</summary>
 <p>
@@ -79,6 +81,58 @@ Replace With: 0xB8
 Orginal Bytes: 0xC3, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x2E, 0x0F, 0x1F, 0x84, 0x00, 0x00, 0x00, 0x00, 0x00
 
 Replace With: 0x00, 0xE8, 0x82, 0x25, 0x48, 0x00, 0xC3, 0x90, 0x90, 0x00, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90
+</p>
+</details>
 
 </p>
+</details>
+
+---------------------------------------------------------------------
+
+<details><summary><h1>Coding a PRX for this: </h1></summary>
+<br>
+
+**First thing, make sure you have module_start and module_stop inside you're PRX, should looks somthing like this:**
+```cpp
+extern "C" int module_start(size_t argc, const void* argv)
+{
+}
+
+extern "C" int module_stop(size_t argc, const void* argv)
+{
+}
+```
+
+**Once Done, stick the code inside module_start that way it gets executed, like so:**
+```cpp
+#include <stdio.h>
+#include <string>
+#include <pthread.h>
+#include "Notify.h" // this can be found in my fork of OSM's PS4-Notify repo aka https://github.com/Backporter/PS4-Notify/blob/main/Notify.h
+
+void *keep(void*n) {
+	int64_t runtime = 0;
+	while (true) {
+		Notify("Still Running");
+		runtime++;
+		sceKernelSleep(60);
+	}
+}
+  
+extern "C" int module_start(size_t argc, const void* argv)
+{
+	ScePthread thread;
+	scePthreadCreate(&thread, NULL, keep, NULL, "injection thread");
+	Notify("Test! {loaded code via prx} {module_start}");
+	return 0;
+}
+
+extern "C" int module_stop(size_t argc, const void* argv)
+{
+}
+```
+Notes(I could very well be wrong on these, so do not take them as 100% fact): 
+
+Now, First thing to note is the fact that in the example above, my code, its running on a seperate thread, and not the main thread, so all functions need to be thread-safe, if you want to use non-thread safe functions they would be required to be ran directly inside module_start(this means they must be able to be ran at run time).
+  
 </details>
