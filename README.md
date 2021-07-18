@@ -27,6 +27,9 @@ Yes, just replace the eboot.bin(or any other ELF that was patched) with the orgi
 * Version: 1.22
 
 ![screenshot](https://cdn.discordapp.com/attachments/458451567658401802/864987083381932092/Screenshot_1.png)
+
+[![Example of would you could do:]()](https://www.youtube.com/watch?v=k_HV1eiYf7k)
+	
 # Soruce Code(ASM):
 
 <details><summary>Show Code:</summary>
