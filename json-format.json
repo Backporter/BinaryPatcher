@@ -1,0 +1,18 @@
+{
+  "Patches":  {
+    "PatchID":"-EXAMPLE",
+    "PatchCount": 1,
+    "DataPatches":[
+      {
+        "Address": 0,
+        "PatchDescription": "Patch (1/1)",
+        "ByteLength": 8,
+        "OrginalBytes": 985458545465,
+        "NewBytes": 5854564588556
+      }
+    ],
+  "credits":[
+    "example"
+  ]
+ }
+}
