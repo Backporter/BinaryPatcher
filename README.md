@@ -1,7 +1,10 @@
-# SSE-Fallout-4-Patcher
+# BinaryPatcher
 
 # What is this?
-This Repo Will Host Tools/Custom Patches For Games I've Done.
+This Repo Will Host Tools/Custom Patches For Games I've Done alongside my tool knwon as BinaryPatcher
+
+## Can i add my own patches?
+Yes!, use the example json format provided in json-format.json and put your patches inside `jsons` folder and my tool will scan for all patches on start
 
 # How Do I Use this?
 For patches I post in plain text, you will need HxD and have a basic understanding of how to use a Hex Editor, for apps that automatic apply patches you will need to follow the instructions and have requirements.
