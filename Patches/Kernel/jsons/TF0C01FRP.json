@@ -1,0 +1,18 @@
+{
+  "Patches":  {
+    "PatchID":"-TF0C01FRP",
+    "PatchCount": 1,
+    "DataPatches":[
+      {
+        "Address": 0x858280,
+        "PatchDescription": "60 FPS override(mov esi, 1) -> (mov esi, 0)",
+        "ByteLength": 2,
+        "OrginalBytes": 0xE8C78900000001BE,
+        "NewBytes": 0xE8C78900000000BE
+      }
+    ],
+  "credits":[
+    "Kernel"
+  ]
+ }
+}
